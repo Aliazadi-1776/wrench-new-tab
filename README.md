@@ -3,6 +3,7 @@
 </p>
 
 <h1 align="center">wrench — Minimal New Tab</h1>
+  <img src="docs/assets/wrench-home.png" width="88" height="88" alt="wrench logo">
 
 <p align="center">
   A quiet, local-first new-tab workspace for bookmarks, focus sessions, custom backgrounds and fast command search.
