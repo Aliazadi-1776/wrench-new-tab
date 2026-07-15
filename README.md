@@ -22,8 +22,6 @@
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
-![wrench new tab](docs/assets/wrench-home.png)
-
 ## Why wrench?
 
 wrench replaces the browser's default new-tab page with a calm workspace that stays useful without becoming noisy. It keeps pages, boards, bookmarks, settings and custom media inside the browser—no account, ads, analytics or project-operated backend.
