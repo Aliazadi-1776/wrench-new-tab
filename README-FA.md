@@ -15,7 +15,7 @@
   <a href="CONTRIBUTING.md">مشارکت</a>
 </p>
 
-![نمای اصلی wrench](docs/assets/wrench-home.png.)
+  <img src="docs/assets/wrench home.png"  alt="wrench logo">
 
 ## wrench چه کاری انجام می‌دهد؟
 
