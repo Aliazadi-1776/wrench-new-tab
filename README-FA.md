@@ -15,7 +15,7 @@
   <a href="CONTRIBUTING.md">مشارکت</a>
 </p>
 
-![نمای اصلی wrench](docs/assets/wrench-home.png)
+![نمای اصلی wrench](docs/assets/wrench-home.png.)
 
 ## wrench چه کاری انجام می‌دهد؟
 
