@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a focused improvement for wrench
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What problem would this feature solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the smallest useful version of the feature.
+    validations:
+      required: true
+  - type: dropdown
+    id: privacy
+    attributes:
+      label: Does this require new permissions or remote data transmission?
+      options:
+        - No
+        - Maybe
+        - Yes
+    validations:
+      required: true

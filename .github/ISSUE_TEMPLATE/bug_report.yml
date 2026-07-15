@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a reproducible problem in wrench
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Explain the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a new tab
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Firefox 140 / Chrome 150
+    validations:
+      required: true
+  - type: input
+    id: wrench
+    attributes:
+      label: wrench version
+      placeholder: 1.7.0
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Console errors or screenshots
+      description: Remove private bookmarks, personal data and credentials before posting.

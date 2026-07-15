@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "wrench — Minimal New Tab",
+  "short_name": "wrench",
+  "version": "1.7.0",
+  "description": "A local-first new tab for bookmarks, focus sessions, custom backgrounds and fast command search.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "contextMenus"
+  ],
+  "optional_permissions": [
+    "bookmarks"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Save to wrench",
+    "default_popup": "popup.html"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "commands": {
+    "quick-save": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Save the current page to wrench"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon-16.png",
+    "32": "assets/icons/icon-32.png",
+    "48": "assets/icons/icon-48.png",
+    "128": "assets/icons/icon-128.png"
+  },
+  "host_permissions": [
+    "https://suggestqueries.google.com/*"
+  ],
+  "homepage_url": "https://github.com/Aliazadi-1776/wrench-new-tab"
+}

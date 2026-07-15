@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>wrench</title>
+  <link rel="stylesheet" href="newtab.css" />
+</head>
+<body data-theme="minimal-dark" data-card-size="medium">
+  <div class="background" aria-hidden="true">
+    <div id="gradient-bg" class="gradient-bg gradient-midnight"></div>
+    <img id="preset-bg" class="media-bg preset-bg" src="assets/backgrounds/aurora.jpg" alt="" />
+    <img id="image-bg" class="media-bg" alt="" />
+    <video id="video-bg" class="media-bg" muted loop playsinline></video>
+    <div class="background-overlay"></div>
+    <div class="ambient-light ambient-one"></div>
+    <div class="ambient-light ambient-two"></div>
+    <div class="grain"></div>
+  </div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" id="brand-home" aria-label="wrench home">
+        <span class="brand-mark" aria-hidden="true"><svg class="wrench-logo" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.2l-5.9 5.9a2.15 2.15 0 1 0 3.05 3.05l5.9-5.9a4 4 0 0 0 5.2-5.3l-2.4 2.4-3-3 2.45-2.35Z"/><path d="m5.15 18.85.01.01"/></svg></span>
+        <span class="brand-copy"><strong id="profile-display-name">wrench</strong><small data-i18n="brandTagline">مرورگر، به سبک تو</small></span>
+      </a>
+
+      <nav id="page-tabs" class="page-tabs" aria-label="Pages"></nav>
+      <button class="icon-button add-page-inline" id="add-page-button" type="button" data-i18n-title="newPage" aria-label="New page">＋</button>
+
+      <div class="top-actions">
+        <button class="language-button" id="language-button" type="button" data-i18n-title="changeLanguage" aria-label="Change language">EN</button>
+      </div>
+    </header>
+
+    <section class="hero-section" aria-hidden="true">
+      <div class="hero-meta"><div id="clock" class="clock">--:--</div><div id="date" class="date">---</div></div>
+      <div class="welcome-wrap"><p id="greeting" class="eyebrow">---</p><h1 data-i18n="heroTitle">همه‌چیز، دقیقاً جایی که می‌خواهی.</h1></div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <div><span class="eyebrow" data-i18n="myBoards">بردهای من</span><h2 id="boards-heading">---</h2></div>
+        <span class="section-hint" data-i18n="accordionHint">برای باز کردن هر بخش روی آن کلیک کن</span>
+      </div>
+
+      <div id="boards-grid" class="boards-grid"></div>
+
+      <div id="empty-state" class="empty-state glass-panel" hidden>
+        <div class="empty-icon">✦</div>
+        <h3 data-i18n="emptyTitle">این صفحه هنوز خالی است</h3>
+        <p data-i18n="emptyText">اولین برد را بساز و لینک‌هایت را مرتب کن.</p>
+        <button id="empty-add-board" class="primary-button" type="button" data-i18n="createFirstBoard">ساخت اولین برد</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="side-rail" aria-label="Quick actions">
+    <section id="search-popover" class="search-popover" aria-hidden="true">
+      <form id="search-form" class="search-box" role="search">
+        <span class="search-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+        </span>
+        <input id="search-input" type="search" autocomplete="off" spellcheck="false" data-i18n-placeholder="searchPlaceholder" placeholder="جست‌وجو در لینک‌ها یا وب..." aria-autocomplete="list" aria-controls="search-suggestions" aria-expanded="false" />
+        <button id="search-clear-button" class="search-clear-button" type="button" aria-label="Clear search" hidden>
+          <svg viewBox="0 0 24 24" fill="none"><path d="m7 7 10 10M17 7 7 17"/></svg>
+        </button>
+        <kbd id="search-shortcut"><span class="shortcut-modifier">Ctrl</span><span>Shift</span><span>K</span></kbd>
+      </form>
+      <div id="search-suggestions-panel" class="search-suggestions-panel">
+        <div id="search-suggestions" class="search-suggestions" role="listbox"></div>
+        <p id="search-hint" class="search-hint"></p>
+      </div>
+    </section>
+
+    <span class="dock-divider" aria-hidden="true"></span>
+
+    <button id="quick-add-button" class="rail-button" type="button" data-i18n-title="newLink" aria-label="New link">
+      <span class="rail-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/></svg></span>
+      <span class="rail-label" data-i18n="newLink">لینک جدید</span>
+    </button>
+    <button id="focus-button" class="rail-button" type="button" data-i18n-title="focus" aria-label="Focus">
+      <span class="rail-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></span>
+      <span class="rail-label" data-i18n="focus">فوکوس</span>
+    </button>
+    <button id="add-board-button" class="rail-button" type="button" data-i18n-title="newBoard" aria-label="New board">
+      <span class="rail-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><path d="M17.5 14v7M14 17.5h7"/></svg></span>
+      <span class="rail-label" data-i18n="newBoard">برد جدید</span>
+    </button>
+    <button id="break-button" class="rail-button" type="button" data-i18n-title="break" aria-label="Break">
+      <span class="rail-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 8h11v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5V8Z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16M8 4c0 1 1 1.3 1 2.5M12 4c0 1 1 1.3 1 2.5"/><path d="M4 21h14"/></svg></span>
+      <span class="rail-label" data-i18n="break">استراحت</span>
+    </button>
+    <button id="settings-button" class="rail-button is-primary" type="button" data-i18n-title="settings" aria-label="Settings">
+      <span class="rail-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/><circle cx="14" cy="7" r="2"/><circle cx="6" cy="17" r="2"/></svg></span>
+      <span class="rail-label" data-i18n="settings">تنظیمات</span>
+    </button>
+  </nav>
+
+  <button id="background-settings-button" class="background-shortcut" type="button" data-i18n-title="background" aria-label="Background">
+    <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m4 18 5-5 4 4 2-2 5 5"/></svg>
+  </button>
+
+  <section id="mode-overlay" class="mode-overlay" aria-hidden="true">
+    <div class="mode-backdrop"></div>
+    <div class="mode-shell">
+      <header class="mode-header">
+        <a class="mode-brand" href="#"><span class="brand-mark small"><svg class="wrench-logo" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.2l-5.9 5.9a2.15 2.15 0 1 0 3.05 3.05l5.9-5.9a4 4 0 0 0 5.2-5.3l-2.4 2.4-3-3 2.45-2.35Z"/><path d="m5.15 18.85.01.01"/></svg></span><strong>wrench</strong></a>
+        <button id="close-mode" class="icon-button" type="button" data-i18n-title="close" aria-label="Close">×</button>
+      </header>
+      <div class="mode-content glass-panel">
+        <span id="mode-kicker" class="mode-kicker">FOCUS SESSION</span>
+        <h2 id="mode-title">وقت تمرکز است.</h2>
+        <p id="mode-description">اعلان‌ها را کنار بگذار و فقط روی یک کار جلو برو.</p>
+        <div id="breathing-orb" class="breathing-orb" aria-hidden="true"><span></span></div>
+        <div id="mode-timer" class="mode-timer">25:00</div>
+        <div class="mode-progress"><span id="mode-progress-bar"></span></div>
+        <div class="mode-controls">
+          <button id="mode-start" class="primary-button large" type="button">شروع</button>
+          <button id="mode-reset" class="secondary-button large" type="button">از نو</button>
+        </div>
+        <p id="mode-tip" class="mode-tip">یک هدف کوچک انتخاب کن؛ فقط همان.</p>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="profile-dialog" class="modal profile-dialog">
+    <form id="profile-form" method="dialog" class="modal-card profile-card glass-panel">
+      <div class="profile-logo" aria-hidden="true"><svg class="wrench-logo" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.2l-5.9 5.9a2.15 2.15 0 1 0 3.05 3.05l5.9-5.9a4 4 0 0 0 5.2-5.3l-2.4 2.4-3-3 2.45-2.35Z"/><path d="m5.15 18.85.01.01"/></svg></div>
+      <span class="eyebrow" data-i18n="welcomeToWrench">WELCOME TO WRENCH</span>
+      <h2 data-i18n="profileWelcomeTitle">دوست داری چه صدات کنیم؟</h2>
+      <p data-i18n="profileWelcomeText">نامت فقط روی همین مرورگر ذخیره می‌شود و بالای صفحه نمایش داده خواهد شد.</p>
+      <label class="field profile-name-field"><span data-i18n="displayName">نام نمایشی</span><input id="profile-onboarding-name" type="text" maxlength="36" autocomplete="name" data-i18n-placeholder="displayNamePlaceholder" required /></label>
+      <button type="submit" class="primary-button large" data-i18n="continueToWrench">ادامه</button>
+    </form>
+  </dialog>
+
+  <dialog id="link-dialog" class="modal">
+    <form id="link-form" method="dialog" class="modal-card glass-panel">
+      <div class="modal-header"><div><span class="eyebrow" data-i18n="bookmark">بوکمارک</span><h2 id="link-dialog-title"></h2></div><button type="button" class="icon-button close-dialog" data-i18n-title="close" aria-label="Close">×</button></div>
+      <input id="link-id" type="hidden" />
+      <label class="field"><span data-i18n="linkTitle">عنوان لینک</span><input id="link-title" type="text" maxlength="100" data-i18n-placeholder="linkTitlePlaceholder" required /></label>
+      <label class="field"><span data-i18n="siteAddress">آدرس سایت</span><input id="link-url" type="text" dir="ltr" placeholder="https://example.com" required /></label>
+      <label class="field"><span data-i18n="targetBoard">برد مقصد</span><select id="link-board" required></select></label>
+      <label class="field"><span><span data-i18n="shortNote">یادداشت کوتاه</span> <small data-i18n="optional">اختیاری</small></span><textarea id="link-note" rows="3" maxlength="180" data-i18n-placeholder="notePlaceholder"></textarea></label>
+      <div class="modal-actions"><button type="button" class="secondary-button close-dialog" data-i18n="cancel">انصراف</button><button type="submit" class="primary-button" data-i18n="saveLink">ذخیره لینک</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="board-dialog" class="modal">
+    <form id="board-form" method="dialog" class="modal-card small-modal glass-panel">
+      <div class="modal-header"><div><span class="eyebrow" data-i18n="category">دسته‌بندی</span><h2 id="board-dialog-title"></h2></div><button type="button" class="icon-button close-dialog" data-i18n-title="close" aria-label="Close">×</button></div>
+      <input id="board-id" type="hidden" />
+      <label class="field"><span data-i18n="boardName">نام برد</span><input id="board-title" type="text" maxlength="50" data-i18n-placeholder="boardPlaceholder" required /></label>
+      <label class="field"><span data-i18n="indicatorColor">رنگ نشانه</span><div class="color-row"><input id="board-color" type="color" value="#73e0ae" /><span id="board-color-value">#8b5cf6</span></div></label>
+      <div class="modal-actions"><button type="button" class="secondary-button close-dialog" data-i18n="cancel">انصراف</button><button type="submit" class="primary-button" data-i18n="saveBoard">ذخیره برد</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="page-dialog" class="modal">
+    <form id="page-form" method="dialog" class="modal-card small-modal glass-panel">
+      <div class="modal-header"><div><span class="eyebrow" data-i18n="workspace">فضای کاری</span><h2 id="page-dialog-title"></h2></div><button type="button" class="icon-button close-dialog" data-i18n-title="close" aria-label="Close">×</button></div>
+      <input id="page-id" type="hidden" />
+      <label class="field"><span data-i18n="pageName">نام صفحه</span><input id="new-page-title" type="text" maxlength="40" data-i18n-placeholder="pagePlaceholder" required /></label>
+      <label class="field"><span data-i18n="shortSymbol">نماد کوتاه</span><input id="new-page-icon" type="text" maxlength="2" value="✦" /></label>
+      <div class="modal-actions"><button id="delete-page-button" type="button" class="ghost-button danger" hidden data-i18n="deletePage">حذف صفحه</button><span class="modal-action-spacer"></span><button type="button" class="secondary-button close-dialog" data-i18n="cancel">انصراف</button><button type="submit" class="primary-button" data-i18n="savePage">ذخیره صفحه</button></div>
+    </form>
+  </dialog>
+
+  <aside id="settings-drawer" class="settings-drawer" aria-hidden="true">
+    <div class="settings-backdrop" id="settings-backdrop"></div>
+    <section class="settings-panel">
+      <header class="settings-header"><div><span class="eyebrow" data-i18n="personalize">شخصی‌سازی</span><h2 data-i18n="settingsTitle">تنظیمات wrench</h2></div><button id="close-settings" class="icon-button" type="button" data-i18n-title="close" aria-label="Close">×</button></header>
+      <div class="settings-content">
+        <details class="settings-group" open>
+          <summary><span data-i18n="profile">پروفایل</span><small data-i18n="profileSummary">نامی که بالای صفحه نمایش داده می‌شود</small></summary>
+          <div class="settings-group-body">
+            <label class="field"><span data-i18n="displayName">نام نمایشی</span><input id="profile-name-input" type="text" maxlength="36" autocomplete="name" data-i18n-placeholder="displayNamePlaceholder" /></label>
+            <p class="settings-note" data-i18n="profilePrivacy">این نام فقط به‌صورت محلی داخل مرورگر ذخیره می‌شود.</p>
+          </div>
+        </details>
+
+        <details class="settings-group">
+          <summary><span data-i18n="background">پس‌زمینه</span><small data-i18n="backgroundSummary">عکس، گرادیان و افکت شیشه‌ای</small></summary>
+          <div class="settings-group-body">
+            <div class="wallpaper-options" id="wallpaper-options">
+              <button type="button" data-wallpaper="aurora" style="--thumb:url('assets/backgrounds/aurora.jpg')" aria-label="Aurora"><span>Aurora</span></button>
+              <button type="button" data-wallpaper="mist" style="--thumb:url('assets/backgrounds/mist.jpg')" aria-label="Mist"><span>Mist</span></button>
+              <button type="button" data-wallpaper="dunes" style="--thumb:url('assets/backgrounds/dunes.jpg')" aria-label="Dunes"><span>Dunes</span></button>
+              <button type="button" data-wallpaper="ocean" style="--thumb:url('assets/backgrounds/ocean.jpg')" aria-label="Ocean"><span>Ocean</span></button>
+              <button type="button" data-wallpaper="forest" style="--thumb:url('assets/backgrounds/forest.jpg')" aria-label="Forest"><span>Forest</span></button>
+              <button type="button" data-wallpaper="mono" style="--thumb:url('assets/backgrounds/mono.jpg')" aria-label="Mono"><span>Mono</span></button>
+            </div>
+            <div class="gradient-options" id="gradient-options">
+              <button type="button" data-gradient="midnight" class="gradient-choice gradient-midnight" aria-label="Midnight"></button>
+              <button type="button" data-gradient="violet" class="gradient-choice gradient-violet" aria-label="Violet"></button>
+              <button type="button" data-gradient="ocean" class="gradient-choice gradient-ocean" aria-label="Ocean"></button>
+              <button type="button" data-gradient="forest" class="gradient-choice gradient-forest" aria-label="Forest"></button>
+              <button type="button" data-gradient="mono" class="gradient-choice gradient-mono" aria-label="Mono"></button>
+            </div>
+            <div class="upload-actions"><button id="choose-background" class="secondary-button" type="button" data-i18n="chooseMedia">انتخاب عکس یا ویدئو</button><button id="remove-background" class="ghost-button danger" type="button" data-i18n="removeFile">حذف فایل</button><input id="background-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm" hidden /></div>
+            <label class="range-field"><span><span data-i18n="overlayDarkness">تیرگی لایه</span> <output id="overlay-output">42%</output></span><input id="overlay-range" type="range" min="0" max="85" value="42" /></label>
+            <label class="range-field"><span><span data-i18n="panelBlur">محو بودن پنل‌ها</span> <output id="blur-output">16px</output></span><input id="blur-range" type="range" min="0" max="32" value="16" /></label>
+          </div>
+        </details>
+
+        <details class="settings-group">
+          <summary><span data-i18n="languageAndFonts">زبان و فونت</span><small data-i18n="fontSummary">فارسی و انگلیسی بدون رفرش صفحه</small></summary>
+          <div class="settings-group-body">
+            <label class="field"><span data-i18n="interfaceLanguage">زبان رابط</span><select id="locale-select"><option value="fa-IR">فارسی</option><option value="en-US">English</option></select></label>
+            <label class="field"><span data-i18n="persianFont">فونت فارسی</span><select id="font-fa"><option value="modern">Vazirmatn / Noto Sans Arabic</option><option value="peyda">Peyda / Dana / Yekan Bakh</option><option value="iran">IRANSansX / IRANSans</option><option value="kufi">Estedad / Noto Kufi Arabic</option><option value="classic">Tahoma / System</option></select></label>
+            <label class="field"><span data-i18n="englishFont">فونت انگلیسی</span><select id="font-en"><option value="space">Space Grotesk / Inter</option><option value="manrope">Manrope / Inter</option><option value="sora">Sora / Inter</option><option value="plex">IBM Plex Sans / Segoe UI</option><option value="system">System UI</option></select></label>
+            <p class="settings-note" data-i18n="fontNote">wrench از فونت‌های نصب‌شده روی سیستم استفاده می‌کند و برای هر انتخاب وزن و فاصله‌گذاری مناسب را هم اعمال می‌کند.</p>
+          </div>
+        </details>
+
+        <details class="settings-group">
+          <summary><span data-i18n="overallStyle">استایل کلی</span><small data-i18n="styleSummary">ظاهر کارت‌ها و رنگ اصلی</small></summary>
+          <div class="settings-group-body">
+            <div class="theme-options" id="theme-options">
+              <button type="button" data-theme-value="minimal-dark"><span class="theme-preview preview-dark"></span><b data-i18n="darkMinimal">مینیمال تیره</b></button>
+              <button type="button" data-theme-value="soft"><span class="theme-preview preview-soft"></span><b data-i18n="softGlass">شیشه‌ای نرم</b></button>
+              <button type="button" data-theme-value="minimal-light"><span class="theme-preview preview-light"></span><b data-i18n="lightMinimal">مینیمال روشن</b></button>
+            </div>
+            <label class="field inline-field"><span data-i18n="accentColor">رنگ اصلی</span><input id="accent-color" type="color" value="#73e0ae" /></label>
+            <label class="field"><span data-i18n="cardSize">اندازه کارت‌ها</span><select id="card-size"><option value="compact" data-i18n="compact">جمع‌وجور</option><option value="medium" data-i18n="normal">معمولی</option><option value="large" data-i18n="large">بزرگ</option></select></label>
+          </div>
+        </details>
+
+        <details class="settings-group">
+          <summary><span data-i18n="searchAndTime">جست‌وجو و زمان</span><small data-i18n="searchSummary">موتور جست‌وجو و ساعت</small></summary>
+          <div class="settings-group-body">
+            <label class="field"><span data-i18n="searchEngine">موتور جست‌وجو</span><select id="search-engine"><option value="google">Google</option><option value="bing">Bing</option><option value="duckduckgo">DuckDuckGo</option></select></label>
+            <label class="switch-row" id="live-google-row"><span><b data-i18n="liveGoogleToggle">پیشنهادهای زنده Google</b><small data-i18n="liveGoogleDesc">هنگام تایپ، عبارت‌های پیشنهادی Google نمایش داده شوند.</small></span><input id="live-google-suggestions" type="checkbox" /></label>
+            <label class="switch-row"><span><b data-i18n="showGreeting">نمایش خوشامدگویی</b><small data-i18n="greetingDesc">متن کوتاه بالای عنوان</small></span><input id="show-greeting" type="checkbox" checked /></label>
+            <label class="switch-row"><span><b data-i18n="clock24">ساعت ۲۴ ساعته</b><small data-i18n="clockDesc">بدون AM و PM</small></span><input id="clock-24" type="checkbox" checked /></label>
+          </div>
+        </details>
+
+        <details class="settings-group">
+          <summary><span data-i18n="focusSettings">فوکوس و استراحت</span><small data-i18n="focusSummary">زمان تایمرها</small></summary>
+          <div class="settings-group-body">
+            <label class="field"><span data-i18n="focusDuration">زمان فوکوس (دقیقه)</span><input id="focus-minutes" type="number" min="1" max="180" value="25" /></label>
+            <label class="field"><span data-i18n="breakDuration">زمان استراحت (دقیقه)</span><input id="break-minutes" type="number" min="1" max="60" value="5" /></label>
+          </div>
+        </details>
+
+        <details class="settings-group">
+          <summary><span data-i18n="dataAndBackup">داده‌ها و پشتیبان</span><small data-i18n="dataSummary">بوکمارک‌ها و فایل پشتیبان</small></summary>
+          <div class="settings-group-body">
+            <div class="import-note"><span aria-hidden="true">↥</span><p><b data-i18n="moveBookmarks">انتقال از نوار بوکمارک</b><small data-i18n="moveBookmarksDesc">بعد از ذخیره موفق در wrench، بوکمارک‌های واردشده از نوار بالای مرورگر حذف می‌شوند.</small></p></div>
+            <div class="stack-actions"><button id="import-browser-bookmarks" class="primary-button" type="button" data-i18n="importBookmarks">انتقال بوکمارک‌های نوار بالا</button><button id="export-data" class="secondary-button" type="button" data-i18n="exportBackup">دانلود فایل پشتیبان</button><button id="import-data" class="secondary-button" type="button" data-i18n="restoreBackup">بازیابی فایل پشتیبان</button><input id="import-data-file" type="file" accept="application/json" hidden /><button id="reset-data" class="ghost-button danger" type="button" data-i18n="resetExtension">بازنشانی کامل افزونه</button></div>
+          </div>
+        </details>
+
+        <footer class="settings-footer">
+          <div class="open-source-note">
+            <span class="open-source-icon" aria-hidden="true">⌁</span>
+            <div>
+              <strong data-i18n="openSourceTitle">wrench متن‌باز است</strong>
+              <small data-i18n="openSourceText">ساخته‌شده برای یک مرورگر آرام‌تر و شخصی‌تر.</small>
+            </div>
+          </div>
+          <div class="creator-links">
+            <a href="https://github.com/Aliazadi-1776" target="_blank" rel="noopener noreferrer" class="creator-link">
+              <span class="creator-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.36 6.84 9.72.5.1.68-.22.68-.49v-1.93c-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.64-1.37-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.9a9.3 9.3 0 0 1 2.5.35c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.76 0 3.95-2.35 4.81-4.58 5.07.36.32.68.94.68 1.9v2.81c0 .27.18.59.69.49A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg></span>
+              <span><b>GitHub</b><small>@Aliazadi-1776</small></span>
+              <span class="creator-link-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://t.me/im_wrench" target="_blank" rel="noopener noreferrer" class="creator-link">
+              <span class="creator-link-icon telegram-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.85 3.15 18.6 20.4c-.24 1.22-.9 1.52-1.82.95l-4.95-3.73-2.39 2.35c-.26.26-.48.48-.99.48l.36-5.05 9.18-8.47c.4-.36-.09-.57-.62-.21L6.02 14.1l-4.88-1.56c-1.06-.34-1.08-1.08.22-1.6L20.45 3.4c.88-.34 1.66.21 1.4-.25Z"/></svg></span>
+              <span><b>Telegram</b><small>@im_wrench</small></span>
+              <span class="creator-link-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="settings-version"><span>wrench</span><span>v1.6.0</span><span data-i18n="localFirst">local-first</span></div>
+        </footer>
+      </div>
+    </section>
+  </aside>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <template id="board-template">
+    <article class="board glass-panel" draggable="true">
+      <header class="board-header">
+        <button class="board-toggle" type="button" aria-expanded="false">
+          <span class="board-dot"></span>
+          <span class="board-title-wrap"><strong class="board-title"></strong><small class="board-count"></small></span>
+          <span class="board-chevron" aria-hidden="true">⌄</span>
+        </button>
+        <div class="board-actions"><button type="button" class="mini-button add-link-to-board" data-i18n-title="addLink" aria-label="Add link">＋</button><button type="button" class="mini-button board-menu-button" data-i18n-title="manage" aria-label="Manage">•••</button><div class="context-menu board-menu"><button type="button" data-action="edit-board" data-i18n="editBoard">ویرایش برد</button><button type="button" data-action="delete-board" class="danger-text" data-i18n="deleteBoard">حذف برد</button></div></div>
+      </header>
+      <div class="board-body"><div class="links-list"></div><button type="button" class="board-empty-add" data-i18n="addFirstLink">＋ افزودن اولین لینک</button></div>
+    </article>
+  </template>
+
+  <template id="link-template">
+    <div class="link-card" draggable="true" tabindex="0" role="link"><span class="site-icon"></span><span class="link-copy"><b class="link-title"></b><small class="link-host"></small></span><button class="link-menu-button" type="button" data-i18n-title="manage" aria-label="Manage">•••</button><span class="open-arrow">↗</span><div class="context-menu link-menu"><button type="button" data-action="edit-link" data-i18n="edit">ویرایش</button><button type="button" data-action="copy-link" data-i18n="copyAddress">کپی آدرس</button><button type="button" data-action="delete-link" class="danger-text" data-i18n="delete">حذف</button></div></div>
+  </template>
+
+  <script src="browser-api.js"></script>
+  <script src="shared.js"></script>
+  <script src="newtab.js"></script>
+</body>
+</html>

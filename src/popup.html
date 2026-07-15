@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>wrench</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main class="popup-shell">
+    <header class="popup-header">
+      <div class="brand-mark" aria-hidden="true"><svg class="wrench-logo" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.2l-5.9 5.9a2.15 2.15 0 1 0 3.05 3.05l5.9-5.9a4 4 0 0 0 5.2-5.3l-2.4 2.4-3-3 2.45-2.35Z"/><path d="m5.15 18.85.01.01"/></svg></div>
+      <div class="header-copy">
+        <h1 data-i18n="title">ذخیره در wrench</h1>
+        <p data-i18n="subtitle">صفحه فعلی را به یکی از بردها اضافه کن.</p>
+      </div>
+      <span class="locale-pill" id="locale-pill">FA</span>
+    </header>
+
+    <form id="save-form" class="popup-form">
+      <label>
+        <span data-i18n="linkTitle">عنوان</span>
+        <input id="title" type="text" maxlength="100" required />
+      </label>
+      <label>
+        <span data-i18n="address">آدرس</span>
+        <input id="url" type="url" required dir="ltr" />
+      </label>
+      <label>
+        <span data-i18n="board">برد مقصد</span>
+        <select id="board"></select>
+      </label>
+      <label>
+        <span data-i18n="note">یادداشت کوتاه</span>
+        <textarea id="note" rows="2" maxlength="180" data-i18n-placeholder="optional" placeholder="اختیاری"></textarea>
+      </label>
+      <button id="save-button" type="submit" data-i18n="save">ذخیره لینک</button>
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <script src="browser-api.js"></script>
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

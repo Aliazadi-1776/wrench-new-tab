@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>wrench — Minimal New Tab</title>
+  <meta name="description" content="A quiet, local-first new-tab workspace for bookmarks, focus sessions and fast search.">
+  <style>
+    :root{color-scheme:dark;--bg:#07120f;--panel:#0d1b17;--line:#254239;--text:#f5faf8;--muted:#9ab2a9;--accent:#73e0ae}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#15362c 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{width:min(1100px,calc(100% - 32px));margin:auto}.hero{padding:88px 0 48px;text-align:center}.logo{width:86px;height:86px}.eyebrow{color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(2.4rem,8vw,5.4rem);line-height:1;margin:.25em 0}.lead{max-width:720px;margin:0 auto;color:var(--muted);font-size:1.15rem}.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}.button{display:inline-flex;padding:11px 18px;border:1px solid var(--line);border-radius:14px;color:var(--text);text-decoration:none;background:rgba(13,27,23,.8)}.button.primary{background:var(--accent);color:#06130e;border-color:transparent;font-weight:800}.shot{display:block;width:100%;margin:38px 0;border-radius:24px;border:1px solid var(--line);box-shadow:0 30px 100px #0008}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px 0 70px}.card{padding:22px;border:1px solid var(--line);border-radius:18px;background:rgba(13,27,23,.72)}.card h2{font-size:1rem;margin:0 0 8px}.card p{color:var(--muted);margin:0}.footer{padding:24px 0 46px;border-top:1px solid var(--line);color:var(--muted);display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}.footer a{color:var(--text)}@media(max-width:760px){.hero{padding-top:54px}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <img class="logo" src="assets/logo.svg" alt="wrench logo">
+      <p class="eyebrow">Open source · local first</p>
+      <h1>wrench</h1>
+      <p class="lead">A quiet new-tab workspace for bookmarks, focus sessions, custom backgrounds and keyboard-first search.</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/Aliazadi-1776/wrench-new-tab">View on GitHub</a>
+        <a class="button" href="privacy.html">Privacy policy</a>
+      </div>
+    </section>
+    <img class="shot" src="assets/wrench-home.png" alt="wrench new-tab interface">
+    <section class="grid">
+      <article class="card"><h2>Calm organization</h2><p>Pages, collapsible boards and quick bookmark access without a crowded dashboard.</p></article>
+      <article class="card"><h2>Keyboard first</h2><p>Open command search with Ctrl/Command + Shift + K and move through results with the keyboard.</p></article>
+      <article class="card"><h2>Your data stays local</h2><p>No account, ads, analytics or project-operated backend.</p></article>
+    </section>
+    <footer class="footer"><span>MIT licensed · 2026</span><span><a href="https://github.com/Aliazadi-1776">GitHub</a> · <a href="https://t.me/im_wrench">Telegram</a></span></footer>
+  </main>
+</body>
+</html>
